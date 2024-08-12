@@ -18,6 +18,8 @@ Download from [Google Drive](https://drive.google.com/file/d/19tPn-QH6_p5jwkvEKj
 YOUR_BLENDER_PATH/blender --background --python render.py -- --cfg=./configs/render.yaml --npy=YOUR_NPY_File --mode=video
 ```
 Where `YOUR_NPY_FOLDER` is the joints data, for example, `path/to/HumanML3D/new_joints/000000.npy' 
+
+
 You can add `--mesh=True` to render smpl meshes.
 ## 4. Render SMPL meshes
 ```
