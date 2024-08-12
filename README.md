@@ -25,7 +25,7 @@ You can add `--mesh=True` to render smpl meshes.
 ```
 YOUR_BLENDER_PATH/blender --background --python render.py -- --cfg=./configs/render.yaml --dir=YOUR_NPY_FOLDER --mode=video --mesh=True
 ```
-Where `YOUR_NPY_FOLDER` place the joints data, for example, `path/to/HumanML3D/new_joints' 
+Where `YOUR_NPY_FOLDER` place the joints data, for example,  `path/to/HumanML3D/new_joints`
 ## 4. Render joints
 ```
 YOUR_BLENDER_PATH/blender --background --python render.py -- --cfg=./configs/render.yaml --dir=YOUR_NPY_FOLDER --mode=video
