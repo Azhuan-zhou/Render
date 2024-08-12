@@ -10,15 +10,21 @@ pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 ```
 ## 2. get smpl model
-Download from [Google Drive]() and place it to `./deps`
+Download from [Google Drive](https://drive.google.com/file/d/19tPn-QH6_p5jwkvEKjy5t06Hoq_ZRVNb/view?usp=share_link) and place it to `./deps`
 ## 3. Set up blender
-Download from [Google Drive]() and place it to `path/to/YOUR_BLENDER_PATH`
+Download from [Google Drive](https://drive.google.com/file/d/19tPn-QH6_p5jwkvEKjy5t06Hoq_ZRVNb/view?usp=share_link) and place it to `path/to/YOUR_BLENDER_PATH`
+## 4. Render one npy file
+```
+YOUR_BLENDER_PATH/blender --background --python render.py -- --cfg=./configs/render.yaml --npy=YOUR_NPY_File --mode=video
+```
+Where `YOUR_NPY_FOLDER` is the joints data, for example, `path/to/HumanML3D/new_joints/000000.npy' 
+You can add `--mesh=True` to render smpl meshes.
 ## 4. Render SMPL meshes
 ```
 YOUR_BLENDER_PATH/blender --background --python render.py -- --cfg=./configs/render.yaml --dir=YOUR_NPY_FOLDER --mode=video --mesh=True
 ```
 Where `YOUR_NPY_FOLDER` place the joints data, for example, `path/to/HumanML3D/new_joints' 
-## 4. Render SMPL meshes
+## 4. Render joints
 ```
 YOUR_BLENDER_PATH/blender --background --python render.py -- --cfg=./configs/render.yaml --dir=YOUR_NPY_FOLDER --mode=video
 ```
