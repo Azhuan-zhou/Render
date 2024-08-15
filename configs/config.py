@@ -167,6 +167,18 @@ def parse_args(phase="train"):
             default="sequence",
             help="render target: video, sequence, frame",
         )
+        group.add_argument(
+            "--start_idx",
+            type=int,
+            default=0,
+            help="render target: video, sequence, frame",
+        )
+        group.add_argument(
+            "--end_idx",
+            type=int,
+            default=-1,
+            help="render target: video, sequence, frame",
+        )
 
     params = parser.parse_args()
     
@@ -210,6 +222,8 @@ def parse_args(phase="train"):
             cfg.RENDER.FPS = float(params.fps)
         cfg.RENDER.MODE = params.mode
         cfg.RENDER.MESH = params.mesh
+        cfg.RENDER.START_IDX = params.start_idx
+        cfg.RENDER.END_IDX = params.end_idx
 
     # Debug mode
     if cfg.DEBUG:

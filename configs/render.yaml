@@ -22,3 +22,5 @@ RENDER:
   VID_EXT: mp4
   ALWAYS_ON_FLOOR: false
   GT: false
+  START_IDX: 0
+  END_IDX: -1

@@ -50,13 +50,13 @@ def render_cli() -> None:
     elif cfg.RENDER.INPUT_MODE.lower() == "dir":
         output_dir = Path(cfg.RENDER.DIR)
         paths = []
-        file_list = natsort.natsorted(os.listdir(cfg.RENDER.DIR))
+        file_list = natsort.natsorted(os.listdir(cfg.RENDER.DIR))[cfg.RENDER.START_IDX:cfg.RENDER.END_IDX]
 
         # render mesh npy first
         for item in file_list:
             if item.endswith(".npy"):
                 paths.append(os.path.join(cfg.RENDER.DIR, item))
-        paths = paths[0:20]
+        paths = paths
         print(f"begin to render {len(paths)} files")
 
     import numpy as np
@@ -70,10 +70,9 @@ def render_cli() -> None:
         file_name = os.path.basename(path.replace(".npy", ""))
         # check existed mp4 or under rendering
         if cfg.RENDER.MODE == "video":
-            frames_folder = os.path.join('./data/frames', file_name+"_frames")
-            video_folder = './data/video'
-            if os.path.exists(os.path.join(video_folder,file_name+".mp4")) or os.path.exists(
-                    frames_folder):
+            frames_folder = os.path.join('/red/ruogu.fang/shanlinsun/data/HumanML3D/frames', file_name+"_frames")
+            video_folder = '/red/ruogu.fang/shanlinsun/data/HumanML3D/videos'
+            if os.path.exists(os.path.join(video_folder,file_name+".mp4")):
                 print(f"npy is rendered or under rendering {path}")
                 continue
         else:
@@ -126,12 +125,7 @@ def render_cli() -> None:
         init = False
 
         if cfg.RENDER.MODE == "video":
-            shutil.copytree(frames_folder, frames_folder+'_img') 
-            if cfg.RENDER.DOWNSAMPLE:
-                video = Video(frames_folder, fps=cfg.RENDER.FPS)
-            else:
-                video = Video(frames_folder, fps=cfg.RENDER.FPS)
-
+            video = Video(frames_folder, fps=cfg.RENDER.FPS)
             vid_path = os.path.join(video_folder,file_name+".mp4")
             video.save(out_path=vid_path)
             shutil.rmtree(frames_folder)
