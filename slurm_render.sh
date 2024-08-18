@@ -1,18 +1,17 @@
 #!/bin/bash
-#SBATCH --partition=gpu
+#SBATCH --output=/net/acadia5a/data/ssun/HumanML3D/runserverlog/arrayJob_%A_%a.txt
+#SBATCH --time=480:00:00
+#SBATCH --cpus-per-task=4
 #SBATCH --gres=gpu:1
-#SBATCH --job-name=human_render
-#SBATCH --output=log/human_render_%A_%a.out
-#SBATCH --error=log/human_render_%A_%a.err
-#SBATCH --time=12:00:00 
-#SBATCH --cpus-per-task=2
-#SBATCH --array=0-29
+#SBATCH --constraint="TITANXp|RTX2080Ti|TITANX"
+#SBATCH --job-name=n
+#SBATCH --array=0-31
 
 # Total number of Sketchfab objects (you may need to adjust this)
 TOTAL_OBJECTS=29229
 
 # Number of objects to download per task
-OBJECTS_PER_TASK=1000
+OBJECTS_PER_TASK=914
 
 # Calculate start and end indices for this task
 START_INDEX=$((SLURM_ARRAY_TASK_ID * OBJECTS_PER_TASK))
@@ -26,5 +25,5 @@ fi
 echo "Task ${SLURM_ARRAY_TASK_ID}: Preprocess scene $START_INDEX to $END_INDEX"
 
 blender-2.93.17-linux-x64/blender --background --python \
-    render2video.py -- --cfg=./configs/render.yaml --dir=/red/ruogu.fang/shanlinsun/data/HumanML3D/new_joints/ \
+    render2video.py -- --cfg=./configs/render.yaml --dir=/net/acadia5a/data/ssun/HumanML3D/new_joints/ \
     --start_idx $START_INDEX --end_idx $END_INDEX --mode=video

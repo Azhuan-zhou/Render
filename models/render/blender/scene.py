@@ -6,19 +6,30 @@ def setup_renderer(denoising=True, oldrender=True, accelerator="gpu", device=[0]
     bpy.context.scene.render.engine = "CYCLES"
     bpy.data.scenes[0].render.engine = "CYCLES"
     if accelerator.lower() == "gpu":
-        bpy.context.preferences.addons[
-            "cycles"
-        ].preferences.compute_device_type = "CUDA"
+        # Set the device_type
+        bpy.context.preferences.addons["cycles"].preferences.compute_device_type = "CUDA"
+
+        # Set the device and feature set
         bpy.context.scene.cycles.device = "GPU"
-        i = 0
+
+        # get_devices() to let Blender detects GPU device
         bpy.context.preferences.addons["cycles"].preferences.get_devices()
-        for d in bpy.context.preferences.addons["cycles"].preferences.devices:
-            if i in device:  # gpu id
-                d["use"] = 1
-                print(d["name"], "".join(str(i) for i in device))
-            else:
-                d["use"] = 0
-            i += 1
+
+        print("preferences.compute_device_type: ", \
+            bpy.context.preferences.addons["cycles"].preferences.compute_device_type)
+
+        for dev in bpy.context.preferences.addons["cycles"].preferences.devices:
+            # dev['use'] = 1 # Using all devices, include GPU and CPU
+            print(f"Use Device {dev['name']}: {dev['use']}")
+        # i = 0
+        # bpy.context.preferences.addons["cycles"].preferences.get_devices()
+        # for d in bpy.context.preferences.addons["cycles"].preferences.devices:
+        #     if i in device:  # gpu id
+        #         d["use"] = 1
+        #         print(d["name"], "".join(str(i) for i in device))
+        #     else:
+        #         d["use"] = 0
+        #     i += 1
 
     if denoising:
         bpy.context.scene.cycles.use_denoising = True

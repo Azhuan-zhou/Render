@@ -70,8 +70,8 @@ def render_cli() -> None:
         file_name = os.path.basename(path.replace(".npy", ""))
         # check existed mp4 or under rendering
         if cfg.RENDER.MODE == "video":
-            frames_folder = os.path.join('/red/ruogu.fang/shanlinsun/data/HumanML3D/frames', file_name+"_frames")
-            video_folder = '/red/ruogu.fang/shanlinsun/data/HumanML3D/videos'
+            frames_folder = os.path.join('/net/acadia5a/data/ssun/HumanML3D/frames', file_name+"_frames")
+            video_folder = '/net/acadia5a/data/ssun/HumanML3D/videos'
             if os.path.exists(os.path.join(video_folder,file_name+".mp4")):
                 print(f"npy is rendered or under rendering {path}")
                 continue
