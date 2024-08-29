@@ -15,7 +15,7 @@ Download from [Google Drive](https://drive.google.com/file/d/19tPn-QH6_p5jwkvEKj
 Download from [Google Drive](https://drive.google.com/file/d/1DqcCfyBgqu9r7xkupi8x-CElvyJgOXCI/view?usp=share_link) and place it to `path/to/YOUR_BLENDER_PATH`
 ## 4. Render one npy file
 ```
-YOUR_BLENDER_PATH/blender --background --python render.py -- --cfg=./configs/render.yaml --npy=YOUR_NPY_File --mode=video
+YOUR_BLENDER_PATH/blender --background --python render2video.py -- --cfg=./configs/render.yaml --npy=YOUR_NPY_File --mode=video
 ```
 Where `YOUR_NPY_FOLDER` is the joints data, for example, `path/to/HumanML3D/new_joints/000000.npy' 
 
