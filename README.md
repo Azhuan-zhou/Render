@@ -10,7 +10,7 @@ pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 ```
 ## 2. get smpl model
-Download from [Google Drive](https://drive.google.com/file/d/19tPn-QH6_p5jwkvEKjy5t06Hoq_ZRVNb/view?usp=share_link) and place it to `./deps`
+Download from [Google Drive](https://drive.google.com/file/d/19tPn-QH6_p5jwkvEKjy5t06Hoq_ZRVNb/view?usp=share_link) and place it to `./body_models`
 ## 3. Set up blender
 Download from [Google Drive](https://drive.google.com/file/d/1DqcCfyBgqu9r7xkupi8x-CElvyJgOXCI/view?usp=share_link) and place it to `path/to/YOUR_BLENDER_PATH`
 ## 4. Render one npy file
